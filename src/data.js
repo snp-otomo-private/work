@@ -8,11 +8,11 @@
   [ C ,いち,　,○,　,　,　]
 */
 const data = [
- {id:"id1",colkey1:"a",colval1:"A",colsort1:1,colkey2:"1",colval2:"いち",colsort2:1,rowkey1:"zyou",rowval1:"上",rowsort1:1,rowkey2:"kou",rowval2:"甲",rowsort2:1}
- ,{id:"id2",colkey1:"a",colval1:"A",colsort1:1,colkey2:"2",colval2:"に",colsort2:2,rowkey1:"chu",rowval1:"中",rowsort1:2,rowkey2:"otsu",rowval2:"乙",rowsort2:2}
- ,{id:"id3",colkey1:"b",colval1:"B",colsort1:2,colkey2:"3",colval2:"さん",colsort2:3,rowkey1:"chu",rowval1:"中",rowsort1:2,rowkey2:"hei",rowval2:"丙",rowsort2:3}
- ,{id:"id4",colkey1:"b",colval1:"B",colsort1:2,colkey2:"4",colval2:"し",colsort2:4,rowkey1:"ge",rowval1:"下",rowsort1:3,rowkey2:"tei",rowval2:"丁",rowsort2:4}
+ {id:"id1",rowkey1:"a",rowval1:"A",rowsort1:1,rowkey2:"1",rowval2:"いち",rowsort2:1,colkey1:"zyou",colval1:"上",colsort1:1,colkey2:"kou",colval2:"甲",colsort2:1}
+ ,{id:"id2",rowkey1:"a",rowval1:"A",rowsort1:1,rowkey2:"2",rowval2:"に",rowsort2:2,colkey1:"chu",colval1:"中",colsort1:2,colkey2:"otsu",colval2:"乙",colsort2:2}
+ ,{id:"id3",rowkey1:"b",rowval1:"B",rowsort1:2,rowkey2:"3",rowval2:"さん",rowsort2:3,colkey1:"chu",colval1:"中",colsort1:2,colkey2:"hei",colval2:"丙",colsort2:3}
+ ,{id:"id4",rowkey1:"b",rowval1:"B",rowsort1:2,rowkey2:"4",rowval2:"し",rowsort2:4,colkey1:"ge",colval1:"下",colsort1:3,colkey2:"tei",colval2:"丁",colsort2:4}
 
- ,{id:"id5",colkey1:"b",colval1:"B",colsort1:2,colkey2:"4",colval2:"し",colsort2:4,rowkey1:"zyou",rowval1:"上",rowsort1:1,rowkey2:"tei",rowval2:"丁",rowsort2:4}
- ,{id:"id6",colkey1:"c",colval1:"C",colsort1:3,colkey2:"1",colval2:"いち",colsort2:1,rowkey1:"zyou",rowval1:"上",rowsort1:1,rowkey2:"tei",rowval2:"丁",rowsort2:4,value:"値"}
+ ,{id:"id5",rowkey1:"b",rowval1:"B",rowsort1:2,rowkey2:"4",rowval2:"し",rowsort2:4,colkey1:"zyou",colval1:"上",colsort1:1,colkey2:"tei",colval2:"丁",colsort2:4}
+ ,{id:"id6",rowkey1:"c",rowval1:"C",rowsort1:3,rowkey2:"1",rowval2:"いち",rowsort2:1,colkey1:"zyou",colval1:"上",colsort1:1,colkey2:"tei",colval2:"丁",colsort2:4,value:"値"}
 ]

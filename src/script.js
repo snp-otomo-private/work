@@ -13,10 +13,10 @@ class FieldNameMapping{
       //col1設定
       this.cols.push(new this.FieldNames("colkey1","colval1","colsort1"));
       //col2設定
-　　　this.cols.push(new this.FieldNames("colkey2","colval2","colsort2"))
+      this.cols.push(new this.FieldNames("colkey2","colval2","colsort2"))
 
       this.rows = new Array();
-　　　//row1設定
+      //row1設定
       this.rows.push(new this.FieldNames("rowkey1","rowval1","rowsort1"));
       //row2設定
       this.rows.push(new this.FieldNames("rowkey2","rowval2","rowsort2"));
@@ -81,19 +81,19 @@ class Matrix{
   //行データ
   #getRows = function(){
       let rows = new Array(); 
-      this.colLabels
-      .forEach(c=>{
+      this.rowLabels
+      .forEach(r=>{
          //一行ごとのデータ        
-         rows.push(this.#generateRowData(c));       
+         rows.push(this.#generateRowData(r));       
       })
       return rows;
   }
 
   //一行ごとのデータ
-  #generateRowData(c){
+  #generateRowData(r){
     let row = new Array();
-        this.rowLabels               
-        .forEach(r=>{
+        this.colLabels               
+        .forEach(c=>{
           let targets = this.renamedData.filter(d=>{
                        let isMatch = true;
                        let fm = this.fm;
@@ -101,7 +101,7 @@ class Matrix{
                         fm.rows.forEach((hoge,index)=> isMatch = isMatch && d["rowkey" + (index + 1)] == r["key" + (index + 1)]);
                        return isMatch;
                      });
-          row.push(targets.length == 0 ? null:{id:targets[0].id,value:targets[0].value});
+          row.push(targets.length == 0 ? null:targets[0]);
         })
     return row;
   }
@@ -154,8 +154,73 @@ class Matrix{
                           });
    
   }
+  
+  //レンダリング
+  render(){
+  	$("body").append("<table class='matrix-table'></table>");
+  	
+  	let $table = $(".matrix-table");
+    this.#renderColLabel($table);
+    this.#renderRowLabel($table);
+    this.#renderData($table); 	
+ 	
+  		
+	
+ }
+ 
+ //列ラベル レンダリング
+ #renderColLabel($table){
+	//for(var num = 1;num <= this.fm.cols.length;num++){
+		
+    this.fm.cols.forEach((hoge,index)=>{
+     let num = index + 1;
+	 $table.append("<tr class='columns-label-tr columns-label-tr" + num + "'></tr>");
+  	     let $tr = $(".columns-label-tr" + num);
+  	     this.colLabels.forEach(c=>{
+         $tr.append("<th>" + c["label" + num] + "</th>");
+        	
+     });
+    })
+ }
+ 
+ //行ラベル レンダリング
+ #renderRowLabel($table){
+	this.fm.rows.forEach(()=>$(".columns-label-tr").prepend("<th class='dummy'></th>"));
+    this.rowLabels.forEach((r,index)=>{
+	  //行ごとの処理
+	  let num = index + 1;
+	  $table.append("<tr class='tr-" + num +"'></tr>");
+	  let $tr = $(".tr-" + num);
+	  
+	  //ラベル
+	  this.fm.rows.forEach((hoge,index)=>$tr.append("<th>" + r["label" +(index+ 1)] + "</th>"));
+    });
+ }
+ 
+  //データ レンダリング
+  #renderData($table){
+	 this.rows.forEach((row,index)=>{
+	  let num = index +1;
+	  let $tr = $(".tr-" + num);
+      row.forEach(data=>{
+	    if(data == null){
+		 $tr.append("<th></th>");
+	    }else{
+		 //属性にIdを設定
+		 let keyAttrStr = "";
+		 this.fm.cols.forEach((hoge,index)=>keyAttrStr += "colkey" + (index + 1) +  " = '" + data["colkey" + (index + 1)] + "' ");
+		 this.fm.rows.forEach((hoge,index)=>keyAttrStr += "rowkey" + (index + 1) +  " = '" + data["rowkey" + (index + 1)] + "' ");
+		
+		 $tr.append("<th id='" + data.id + "'" + keyAttrStr + ">" + (data.value == null?"○":data.value) + "</th>");
+	    }
+      })
+     })
+  }
+  
 }
-
 
 console.log("data")
 console.log(new Matrix(data))
+
+
+new Matrix(data).render();
