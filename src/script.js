@@ -157,7 +157,7 @@ class Matrix{
   
   //レンダリング
   render(){
-  	$("body").append("<table class='matrix-table'></table>");
+  	$("body").append("<table class='matrix-table group'></table>");
   	
   	let $table = $(".matrix-table");
     this.#renderColLabel($table);
@@ -204,14 +204,14 @@ class Matrix{
 	  let $tr = $(".tr-" + num);
       row.forEach(data=>{
 	    if(data == null){
-		 $tr.append("<th></th>");
+		 $tr.append("<td class='cell'></td>");
 	    }else{
 		 //属性にIdを設定
 		 let keyAttrStr = "";
 		 this.fm.cols.forEach((hoge,index)=>keyAttrStr += "colkey" + (index + 1) +  " = '" + data["colkey" + (index + 1)] + "' ");
 		 this.fm.rows.forEach((hoge,index)=>keyAttrStr += "rowkey" + (index + 1) +  " = '" + data["rowkey" + (index + 1)] + "' ");
 		
-		 $tr.append("<th id='" + data.id + "'" + keyAttrStr + ">" + (data.value == null?"○":data.value) + "</th>");
+		 $tr.append("<td id='" + data.id + "' class='cell' " + keyAttrStr + ">" + (data.value == null?"○":data.value) + "</td>");
 	    }
       })
      })
